@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/componen
 import { Badge } from '@/components/ui/badge';
 import ProductoItem from '@/components/ProductoItem';
 import SelectorProductos from '@/components/SelectorProductos';
-import { ArrowLeft, Trash2, Restaurant } from 'lucide-react';
+import { ArrowLeft, Trash2, ChefHat } from 'lucide-react';
 import { formatCurrency } from '@/lib/formatters';
 import { MenuItem } from '@/data/menuItems';
 
@@ -66,7 +66,7 @@ const DetalleOrden: React.FC = () => {
           <h1 className="text-3xl font-bold">Detalle de Orden</h1>
         </div>
         <div className="flex items-center gap-2">
-          <Restaurant className="h-6 w-6 text-accent" />
+          <ChefHat className="h-6 w-6 text-accent" />
           <span className="font-bold">RESTAURANTE EL SAYAN</span>
         </div>
       </div>
