@@ -38,6 +38,13 @@ const LogoYComentarios: React.FC = () => {
       texto: 'Muy buena experiencia, volveré pronto con mi familia.',
       calificacion: 5,
       fecha: new Date('2024-04-20')
+    },
+    {
+      id: '4',
+      nombre: 'Freezer',
+      texto: 'Muy rico todo pero olvidé la cartera para pagar y el mesero me lanza un kamehameha.',
+      calificacion: 1,
+      fecha: new Date('2024-05-10')
     }
   ]);
 
