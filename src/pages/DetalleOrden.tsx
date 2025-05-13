@@ -4,22 +4,17 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useOrdenes } from '@/context/OrdenesContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import ProductoItem from '@/components/ProductoItem';
-import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
+import SelectorProductos from '@/components/SelectorProductos';
+import { ArrowLeft, Trash2 } from 'lucide-react';
 import { formatCurrency } from '@/lib/formatters';
+import { MenuItem } from '@/data/menuItems';
 
 const DetalleOrden: React.FC = () => {
   const { ordenId } = useParams<{ ordenId: string }>();
   const navigate = useNavigate();
   const { obtenerOrden, calcularTotal, agregarProducto, eliminarOrden } = useOrdenes();
-  
-  const [nuevoProducto, setNuevoProducto] = useState({
-    nombre: '',
-    cantidad: 1,
-    precioUnitario: 0
-  });
   
   const orden = obtenerOrden(ordenId || '');
   
@@ -38,25 +33,12 @@ const DetalleOrden: React.FC = () => {
     );
   }
   
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setNuevoProducto({
-      ...nuevoProducto,
-      [name]: name === 'cantidad' || name === 'precioUnitario' 
-        ? parseFloat(value) || 0 
-        : value
+  const handleAgregarProducto = (producto: MenuItem, cantidad: number) => {
+    agregarProducto(ordenId || '', {
+      nombre: producto.nombre,
+      cantidad,
+      precioUnitario: producto.precioUnitario
     });
-  };
-  
-  const handleAgregarProducto = () => {
-    if (nuevoProducto.nombre && nuevoProducto.cantidad > 0 && nuevoProducto.precioUnitario > 0) {
-      agregarProducto(ordenId || '', nuevoProducto);
-      setNuevoProducto({
-        nombre: '',
-        cantidad: 1,
-        precioUnitario: 0
-      });
-    }
   };
   
   const getEstadoColor = (estado: string) => {
@@ -150,57 +132,7 @@ const DetalleOrden: React.FC = () => {
             <CardHeader>
               <CardTitle>Agregar Producto</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <label className="text-sm font-medium block mb-1">
-                  Nombre del producto
-                </label>
-                <Input
-                  placeholder="Hamburguesa"
-                  name="nombre"
-                  value={nuevoProducto.nombre}
-                  onChange={handleInputChange}
-                />
-              </div>
-              
-              <div>
-                <label className="text-sm font-medium block mb-1">
-                  Cantidad
-                </label>
-                <Input
-                  type="number"
-                  min="1"
-                  placeholder="1"
-                  name="cantidad"
-                  value={nuevoProducto.cantidad}
-                  onChange={handleInputChange}
-                />
-              </div>
-              
-              <div>
-                <label className="text-sm font-medium block mb-1">
-                  Precio unitario
-                </label>
-                <Input
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  placeholder="0.00"
-                  name="precioUnitario"
-                  value={nuevoProducto.precioUnitario}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button 
-                className="w-full bg-accent hover:bg-accent/90"
-                onClick={handleAgregarProducto}
-                disabled={!nuevoProducto.nombre || nuevoProducto.cantidad <= 0 || nuevoProducto.precioUnitario <= 0}
-              >
-                <Plus className="mr-2 h-4 w-4" /> Agregar producto
-              </Button>
-            </CardFooter>
+            <SelectorProductos onSelectProducto={handleAgregarProducto} />
           </Card>
         </div>
       </div>
