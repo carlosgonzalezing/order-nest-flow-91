@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { ListOrdered, Plus, LogOut } from 'lucide-react';
+import { ListOrdered, Plus, LogOut, ChefHat } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 interface SidebarProps {
@@ -29,10 +29,16 @@ const Sidebar: React.FC<SidebarProps> = ({ className }) => {
       )}
     >
       <div className="p-4 border-b border-sidebar-border">
-        <h1 className="text-xl font-bold text-sidebar-foreground flex items-center">
-          <ListOrdered className="mr-2" />
-          RestauranteGPT
-        </h1>
+        <div className="flex flex-col items-center mb-2">
+          <img 
+            src="/lovable-uploads/939ee94a-50f7-4b8f-b4f3-c00aabfe39e1.png" 
+            alt="RESTAURANTE EL SAYAN" 
+            className="h-20 w-20 mb-2 animate-scale"
+          />
+          <h1 className="text-xl font-bold text-sidebar-foreground text-center">
+            RESTAURANTE<br/>EL SAYAN
+          </h1>
+        </div>
       </div>
       
       <nav className="flex-1 p-4">
@@ -70,6 +76,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className }) => {
       
       <div className="p-4 border-t border-sidebar-border text-xs text-sidebar-foreground/70">
         Sistema de Gestión de Pedidos
+        <div className="mt-1 text-center text-xs font-bold">RESTAURANTE EL SAYAN</div>
       </div>
     </div>
   );

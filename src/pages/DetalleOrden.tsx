@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useOrdenes } from '@/context/OrdenesContext';
 import { Button } from '@/components/ui/button';
@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/componen
 import { Badge } from '@/components/ui/badge';
 import ProductoItem from '@/components/ProductoItem';
 import SelectorProductos from '@/components/SelectorProductos';
-import { ArrowLeft, Trash2 } from 'lucide-react';
+import { ArrowLeft, Trash2, Restaurant } from 'lucide-react';
 import { formatCurrency } from '@/lib/formatters';
 import { MenuItem } from '@/data/menuItems';
 
@@ -58,11 +58,17 @@ const DetalleOrden: React.FC = () => {
   
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Button variant="outline" onClick={() => navigate('/')}>
-          <ArrowLeft className="mr-2 h-4 w-4" /> Volver
-        </Button>
-        <h1 className="text-3xl font-bold">Detalle de Orden</h1>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Button variant="outline" onClick={() => navigate('/')}>
+            <ArrowLeft className="mr-2 h-4 w-4" /> Volver
+          </Button>
+          <h1 className="text-3xl font-bold">Detalle de Orden</h1>
+        </div>
+        <div className="flex items-center gap-2">
+          <Restaurant className="h-6 w-6 text-accent" />
+          <span className="font-bold">RESTAURANTE EL SAYAN</span>
+        </div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
