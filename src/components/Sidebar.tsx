@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { ListOrdered, Plus, LogOut, ChefHat } from 'lucide-react';
+import { ListOrdered, Plus, LogOut, ChefHat, MessageSquare } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 interface SidebarProps {
@@ -11,6 +11,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ className }) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     localStorage.removeItem('isAuthenticated');
@@ -20,6 +21,8 @@ const Sidebar: React.FC<SidebarProps> = ({ className }) => {
     });
     navigate('/login');
   };
+  
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <div
@@ -46,7 +49,10 @@ const Sidebar: React.FC<SidebarProps> = ({ className }) => {
           <li>
             <Link
               to="/"
-              className="flex items-center px-4 py-2 text-sidebar-foreground hover:bg-sidebar-accent rounded-md transition-colors hover:scale-105 transform duration-200"
+              className={cn(
+                "flex items-center px-4 py-2 text-sidebar-foreground hover:bg-sidebar-accent rounded-md transition-colors hover:scale-105 transform duration-200",
+                isActive('/') && "bg-sidebar-accent font-bold"
+              )}
             >
               <ListOrdered className="mr-2 h-5 w-5" />
               Órdenes Activas
@@ -55,10 +61,25 @@ const Sidebar: React.FC<SidebarProps> = ({ className }) => {
           <li>
             <Link
               to="/nueva-orden"
-              className="flex items-center px-4 py-2 text-sidebar-foreground hover:bg-sidebar-accent rounded-md transition-colors hover:scale-105 transform duration-200"
+              className={cn(
+                "flex items-center px-4 py-2 text-sidebar-foreground hover:bg-sidebar-accent rounded-md transition-colors hover:scale-105 transform duration-200",
+                isActive('/nueva-orden') && "bg-sidebar-accent font-bold"
+              )}
             >
               <Plus className="mr-2 h-5 w-5" />
               Nueva Orden
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/logo-comentarios"
+              className={cn(
+                "flex items-center px-4 py-2 text-sidebar-foreground hover:bg-sidebar-accent rounded-md transition-colors hover:scale-105 transform duration-200",
+                isActive('/logo-comentarios') && "bg-sidebar-accent font-bold"
+              )}
+            >
+              <MessageSquare className="mr-2 h-5 w-5" />
+              Logo y Comentarios
             </Link>
           </li>
         </ul>

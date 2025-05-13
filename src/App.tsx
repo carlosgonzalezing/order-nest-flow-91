@@ -1,4 +1,3 @@
-
 import React from "react"; // Explicitly import React
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -13,12 +12,12 @@ import DetalleOrden from "./pages/DetalleOrden";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Index from "./pages/Index";
+import LogoYComentarios from "./pages/LogoYComentarios";
 import { useEffect, useState } from "react";
 
 // Create the query client outside of the component function
 const queryClient = new QueryClient();
 
-// Give the component a type for better TypeScript support
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -77,6 +76,16 @@ const App: React.FC = () => (
                   <ProtectedRoute>
                     <Layout>
                       <DetalleOrden />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/logo-comentarios"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <LogoYComentarios />
                     </Layout>
                   </ProtectedRoute>
                 }
