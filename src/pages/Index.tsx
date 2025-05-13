@@ -4,10 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
   const navigate = useNavigate();
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
   useEffect(() => {
-    navigate('/');
-  }, [navigate]);
+    if (isAuthenticated) {
+      navigate('/');
+    } else {
+      navigate('/login');
+    }
+  }, [navigate, isAuthenticated]);
 
   return null;
 };
