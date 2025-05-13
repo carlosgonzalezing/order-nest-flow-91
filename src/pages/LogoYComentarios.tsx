@@ -42,7 +42,7 @@ const LogoYComentarios: React.FC = () => {
     {
       id: '4',
       nombre: 'Freezer',
-      texto: 'Muy rico todo pero olvidé la cartera para pagar y el mesero me lanza un kamehameha.',
+      texto: 'Muy rico todo pero olvidé la cartera para pagar y el cocinero KAKAROTO me lanza un kamehameha. cule rabia al final pague por nequi Nojoda 😈',
       calificacion: 1,
       fecha: new Date('2024-05-10')
     }
