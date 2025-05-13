@@ -39,11 +39,37 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 to-accent/5">
-      <div className="w-full max-w-md px-4 animate-fade-in">
-        <Card className="border-2 shadow-lg">
+    <div 
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 to-accent/5 relative overflow-hidden"
+      style={{ 
+        backgroundImage: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))', 
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+    >
+      {/* Logo en el fondo con efecto de opacidad */}
+      <div 
+        className="absolute inset-0 z-0 opacity-15" 
+        style={{ 
+          backgroundImage: 'url("/lovable-uploads/939ee94a-50f7-4b8f-b4f3-c00aabfe39e1.png")',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: 'contain',
+          filter: 'blur(1px)'
+        }}
+      ></div>
+      
+      <div className="w-full max-w-md px-4 animate-fade-in z-10">
+        <Card className="border-2 shadow-lg bg-white/90 backdrop-blur-sm">
           <CardHeader className="text-center space-y-2">
-            <CardTitle className="text-3xl font-bold text-primary">RestauranteGPT</CardTitle>
+            <div className="flex justify-center mb-2">
+              <img 
+                src="/lovable-uploads/939ee94a-50f7-4b8f-b4f3-c00aabfe39e1.png" 
+                alt="RESTAURANTE EL SAYAN Logo" 
+                className="h-16 w-auto"
+              />
+            </div>
+            <CardTitle className="text-3xl font-bold text-primary">RESTAURANTE EL SAYAN</CardTitle>
             <CardDescription className="text-lg">Sistema de Gestión de Pedidos</CardDescription>
           </CardHeader>
           <CardContent>
