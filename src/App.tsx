@@ -1,3 +1,4 @@
+
 import React from "react"; // Explicitly import React
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -13,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Index from "./pages/Index";
 import LogoYComentarios from "./pages/LogoYComentarios";
+import ModeloEstructural from "./pages/ModeloEstructural";
 import { useEffect, useState } from "react";
 
 // Create the query client outside of the component function
@@ -86,6 +88,16 @@ const App: React.FC = () => (
                   <ProtectedRoute>
                     <Layout>
                       <LogoYComentarios />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/modelo-estructural"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <ModeloEstructural />
                     </Layout>
                   </ProtectedRoute>
                 }
